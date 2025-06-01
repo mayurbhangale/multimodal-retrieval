@@ -49,14 +49,20 @@ We define embedding functions:
 
 The objective is to maximize similarity for true query-product pairs and minimize it for negatives, using the InfoNCE contrastive loss:
 
-$$
-\mathcal{L}_\mathrm{InfoNCE} = -\frac{1}{N} \sum_{i=1}^N \log
+```math
+\mathcal{L}_\mathrm{InfoNCE}
+=
+-\frac{1}{N} \sum_{i=1}^N \log
 \frac{
-    \exp\left( \mathrm{sim}(f_\mathrm{text}(q_i), f_\mathrm{mm}(p^i_\mathrm{text}, p^i_\mathrm{img}))/\tau \right)
+    \exp\bigl(
+      \mathrm{sim}\bigl(f_\mathrm{text}(q_i),\,f_\mathrm{mm}(p^i_\mathrm{text},\,p^i_\mathrm{img})\bigr)\,/\,\tau
+    \bigr)
 }{
-    \sum_{j=1}^N \exp\left( \mathrm{sim}(f_\mathrm{text}(q_i), f_\mathrm{mm}(p^j_\mathrm{text}, p^j_\mathrm{img}))/\tau \right)
+    \sum_{j=1}^N \exp\bigl(
+      \mathrm{sim}\bigl(f_\mathrm{text}(q_i),\,f_\mathrm{mm}(p^j_\mathrm{text},\,p^j_\mathrm{img})\bigr)\,/\,\tau
+    \bigr)
 }
-$$
+```
 
 Where:
 - $\mathrm{sim}(\cdot, \cdot)$ is cosine similarity,
